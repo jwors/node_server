@@ -1,5 +1,6 @@
 import HttpStatus from 'http-status';
 import { User } from '../models/index';
+import ApiError from '../utils/ApiError'
 
 /**
  * Create a user
@@ -8,5 +9,5 @@ import { User } from '../models/index';
  */
 
 const createUser = async (userBody) => {
-	if (await User.)
+	if (await User.isEmailTaken)
 }
