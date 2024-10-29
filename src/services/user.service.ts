@@ -52,7 +52,7 @@ const getUserByEmail = async (email: string) => {
  * @param {Object} updateBody
  * @returns {Promise<User>}
  */
-const updateUserById = async (userId, updateBody) => {
+const updateUserById = async (userId: number, updateBody: any) => {
 	const user = await getUserById(userId);
 	if (!user) {
 		throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
@@ -79,11 +79,12 @@ const deleteUserById = async (userId: number) => {
 	return user;
 };
 
-module.exports = {
+export default {
 	createUser,
 	queryUsers,
 	getUserById,
 	getUserByEmail,
 	updateUserById,
 	deleteUserById,
-};
+}
+
