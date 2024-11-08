@@ -1,21 +1,21 @@
 import express from 'express';
+import swaggerJsdoc from 'swagger-jsdoc'
+import swaggerUi from 'swagger-ui-express'
+import swaggerDefinition from '../docs/swaggerDef'
 
 const router = express.Router();
 
-router.get('/getDocs', (req, res) => {
-	res.writeHead(200, {
-		"Content-Type": "text/plan;charset=utf-8"
-	})
-	const feadBackData = {
-		data: {
-			number: 1,
-			age: 18,
-			name: '曹浩洋'
-		},
-		status: 200,
-		code: 200
-	}
-	res.end(JSON.stringify(feadBackData))
+const specs = swaggerJsdoc({
+	swaggerDefinition,
+	apis: [
+		'src/docs/*.yml',
+		'src/routes/*.ts'
+	]
 })
+
+router.use('/', swaggerUi.serve)
+
+router.get('/', swaggerUi.setup(specs)
+)
 
 export default router
